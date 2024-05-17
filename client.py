@@ -8,11 +8,13 @@ import socket
 logging.basicConfig(filename='client.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # gjithashtu edhe shared secret key
-#fillimisht n terminal para se me bo cd to this folder, shembull: export SHARED_SECRET_KEY=qelesi123
+#fillimisht n terminal para se me bo cd to this folder, shumbull: export SHARED_SECRET_KEY=qelesi123
 #edhe duhet me u bo export ne te dy terminalet
+
 shared_secret_key = os.getenv('SHARED_SECRET_KEY')
 if shared_secret_key is None:
     logging.error("SHARED_SECRET_KEY environment variable not set.")
+    print("Key environment variable not set.")
     exit(1)
 shared_secret_key = shared_secret_key.encode()
 
@@ -28,7 +30,9 @@ client_socket.send(message.encode())
 client_socket.send(hmac_signature)
 
 logging.info(f"Sending message with HMAC: [{message} | {hmac_signature.hex()}]")
-response = client_socket.recv(1024).decode()  
+print(f"Sending message with HMAC: [{message} | {hmac_signature.hex()}]")
+response = client_socket.recv(1024).decode()  # Make sure to receive enough bytes
 logging.info("Server response: " + response)
+print("Server response:", response)
 
 client_socket.close()

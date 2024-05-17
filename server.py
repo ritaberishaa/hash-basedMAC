@@ -3,7 +3,6 @@ import hmac
 import logging
 import os 
 import socket
-
 # Setup i logging
 logging.basicConfig(filename='server.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -12,6 +11,7 @@ logging.basicConfig(filename='server.log', level=logging.INFO, format='%(asctime
 shared_secret_key = os.getenv('SHARED_SECRET_KEY')
 if shared_secret_key is None:
     logging.error("SHARED_SECRET_KEY environment variable not set.")
+    print("Key environment variable not set.")
     exit(1)
 shared_secret_key = shared_secret_key.encode()
 
@@ -24,8 +24,9 @@ server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_address = ('localhost', 12345)
 server_socket.bind(server_address)
 server_socket.listen(1)
-#per logging
+#per logging edhe printim
 logging.info("Server started and awaiting messages...")
+print("Server started and awaiting messages...")
 
 while True:
     client_socket, client_address = server_socket.accept()
@@ -36,13 +37,17 @@ while True:
         received_hmac = client_socket.recv(32)
 
         logging.info(f"Message received with HMAC: [{received_message.decode()} | {received_hmac.hex()}]")
+        print(f"Message received with HMAC: [{received_message.decode()} | {received_hmac.hex()}]")
+        print("Validating HMAC...")
 
         if verify_hmac(received_message, received_hmac):
             response = "Message verified successfully. Integrity and authenticity confirmed."
             logging.info(response)
+            print(response)
         else:
             response = "Message verification failed."
             logging.error(response)
+            print(response)
         
         client_socket.send(response.encode())  # me kthy response back to client
 
