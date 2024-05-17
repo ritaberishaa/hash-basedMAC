@@ -1,0 +1,2 @@
+2024-05-17 10:30:54,218 - INFO - Sending message with HMAC: [Test per detyren | bc9480ccaaed136c4578fa8395ecd0dc520429665e25a8fd9bece0751984643c]
+2024-05-17 10:30:54,219 - INFO - Server response: Message verified successfully. Integrity and authenticity confirmed.
