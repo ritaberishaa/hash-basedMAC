@@ -34,3 +34,31 @@ Secret Key Reliance: Compromising secret keys can compromise message integrity, 
 Limited Protection: While HMAC detects some attacks, it cannot prevent all types, necessitating additional security measures.
 
 **How to run**
+
+Implementing HMAC in a client-server model involves several steps. Below, we provide an example implementation using Python to illustrate the concept. This example will demonstrate how to set up a simple client and server that use HMAC to ensure message integrity.
+
+**Prerequisites**
+
+Python installed on both client and server machines.
+Basic understanding of networking and cryptographic concepts.
+Knowledge of Python programming.
+
+First, let's set up the server. The server will receive messages from the client, compute the HMAC, and verify the integrity of the messages.
+Next, let's set up the client. The client will send messages to the server along with the computed HMAC.
+
+**Running the Example**
+
+**Start the Server:**
+
+Open a terminal or command prompt and navigate to the directory containing server.py. Run the server script using Python:
+**python server.py**
+
+**Send a Message from the Client:**
+
+Open another terminal or command prompt and navigate to the directory containing client.py. Run the client script using Python:
+**python client.py**
+
+**Verify the Message:**
+
+The server will receive the message, compute the HMAC, and verify its integrity. If the message is untampered, the server will print the valid message. Otherwise, it will indicate that the message has been tampered with.
+
