@@ -29,17 +29,21 @@ logging.info("Server started and awaiting messages...")
 print("Server started and awaiting messages...")
 
 while True:
+    #pranon lidhjet e klienteve
     client_socket, client_address = server_socket.accept()
     logging.info(f"Connection from {client_address}")
     try:
+        #merr mesazhin
         message_length = int.from_bytes(client_socket.recv(4), 'big')
         received_message = client_socket.recv(message_length)
         received_hmac = client_socket.recv(32)
-
+        
+        #printon mesazhin e marre 
         logging.info(f"Message received with HMAC: [{received_message.decode()} | {received_hmac.hex()}]")
         print(f"Message received with HMAC: [{received_message.decode()} | {received_hmac.hex()}]")
         print("Validating HMAC...")
 
+        #verifikon HMAC
         if verify_hmac(received_message, received_hmac):
             response = "Message verified successfully. Integrity and authenticity confirmed."
             logging.info(response)
@@ -48,8 +52,9 @@ while True:
             response = "Message verification failed."
             logging.error(response)
             print(response)
-        
+
         client_socket.send(response.encode())  # me kthy response back to client
 
+    #mbyll lidhjet me klientin
     finally:
         client_socket.close()
