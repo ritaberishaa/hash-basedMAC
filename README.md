@@ -57,9 +57,9 @@ Logging is included for significant actions in both the client and server, such 
 <h3>Example Console Output</h3>
 
 **Server**
-
-
+<img src="Server.png">
 
 **Client**
+<img src="Client.png">
 
 
