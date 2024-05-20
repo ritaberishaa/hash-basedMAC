@@ -1,64 +1,65 @@
 # Implementation of Hash-based Message Authentication Code (HMAC) on a Client-Server Model
 
-When developing applications and web-based platforms, ensuring the integrity of data and information exchanged online is paramount. One mechanism for achieving this is through the use of Hash-based Message Authentication Codes (HMAC), which employ cryptographic techniques combining three elements: a message, a secret key, and a hash function.
+**Overview**
 
-**How HMAC Works**
+This project implements a secure communication system using a Hash-based Message Authentication Code (HMAC) to verify the integrity and authenticity of messages on a Client-Server Model. The system involves both client and server components written in Python.
 
-HMAC is a message-based authentication code that utilizes a hash function along with a cryptographic key. It provides both the server and the client with a private key unique to their interaction. The three crucial elements of HMAC are:
+**Objectives**
 
-Message: This represents the data being authenticated or verified, ensuring its secure storage and transmission.
-Secret Keys: These keys are used to generate the HMAC value and are known only to authorized parties.
-Cryptographic Hash Function: This function hashes input data (message and key) into a new output value (HMAC value). The process safeguards message integrity, as HMAC values cannot be reversed to reveal the original message or key.
-HMAC operates as a symmetric key algorithm, utilizing the same secret key for both creating and verifying the HMAC value.
+* Apply HMAC for securing messages against tampering and forgery.
+* Ensure data integrity and authenticity in client-server communications.
+* Gain hands-on experience using cryptographic libraries.
 
-**Goals of HMAC**
+**Technical Stack**
 
-HMAC aims to keep messages secure and free from external interference during transmission. By hashing messages and combining them with secret keys, HMAC prevents unauthorized access and tampering. Upon reception, parties can verify message accuracy using the same secret key to digest and authenticate the message. This process helps detect any modifications made by attackers during transmission.
+* Server: Authenticates received messages and optionally provides responses.
+* Client: Sends messages with HMAC authentication codes.
+* Dependencies: Uses hashlib and hmac libraries.
 
-If the computed hash matches the transmitted HMAC value, the message remains unaltered during transmission. Any discrepancies indicate potential tampering, enabling parties to identify and reject compromised messages.
+**Requirements**
 
-**Importance of HMAC**
+**Shared Secret Key**
+A pre-shared secret key is established and used by both the client and server. The key is retrieved from an environment variable to enhance security.
 
-HMAC ensures data protection and facilitates easy detection of unauthorized alterations. It enhances security by permanently hashing messages, requiring the correct secret key for access. This process minimizes the risk of security breaches, including message modification, replay attacks, and man-in-the-middle attacks.
+**Client-Side Message Preparation**
+The client accepts user input for the message to be sent, generates an HMAC for the message using the shared secret key and SHA-256 hash function.
 
-**Key benefits of implementing HMAC in app development include:**
+**Server-Side Message Verification**
+The server verifies the HMAC received from the client using the shared secret key and provides confirmation of message authenticity and integrity.
 
-Safe Communications: HMAC verification ensures secure data exchange, reducing interception risks.
-Compliance: HMAC aligns with regulatory standards (e.g., GDPR), ensuring interaction with trusted services.
-Easy Integration: Supported by various programming languages, HMAC seamlessly integrates into existing workflows.
-Drawbacks of HMAC
+**Communication Protocol**
+A simple communication protocol is designed where the client sends the length of the message, the message itself, and the HMAC to the server. The server processes these components.
 
-**Despite its advantages, HMAC has limitations and drawbacks:**
+**User Interface**
+User-friendly console interfaces are implemented for both the client and server, guiding the user through sending, receiving, and verifying messages.
 
-Secret Key Reliance: Compromising secret keys can compromise message integrity, necessitating secure key management.
-Limited Protection: While HMAC detects some attacks, it cannot prevent all types, necessitating additional security measures.
+**Security Practices**
+The shared secret key is securely handled within both applications. Measures such as using hmac.compare_digest are implemented to prevent timing attacks.
 
-**How to run**
+**Logging**
+Logging is included for significant actions in both the client and server, such as message transmission, HMAC generation, and verification results.
 
-Implementing HMAC in a client-server model involves several steps. Below, we provide an example implementation using Python to illustrate the concept. This example will demonstrate how to set up a simple client and server that use HMAC to ensure message integrity.
+<h2>How to run</h2>
 
-**Prerequisites**
+**Running the Server**
+* Set the shared secret key environment variable:
+  * export SHARED_SECRET_KEY="your_shared_secret_key"
+* Run the server script:
+  * python server.py
 
-Python installed on both client and server machines.
-Basic understanding of networking and cryptographic concepts.
-Knowledge of Python programming.
+**Running the Client**
+* Set the shared secret key environment variable:
+  * export SHARED_SECRET_KEY="your_shared_secret_key"
+* Run the client script:
+  * python client.py
+* Enter the message you want to send when prompted.
 
-First, let's set up the server. The server will receive messages from the client, compute the HMAC, and verify the integrity of the messages.
-Next, let's set up the client. The client will send messages to the server along with the computed HMAC.
+<h3>Example Console Output</h3>
 
-**Running the Example**
+**Server**
 
-**Start the Server:**
 
-Open a terminal or command prompt and navigate to the directory containing server.py. Run the server script using Python:
-**python server.py**
 
-**Send a Message from the Client:**
+**Client**
 
-Open another terminal or command prompt and navigate to the directory containing client.py. Run the client script using Python:
-**python client.py**
-
-**Verify the Message:**
-
-The server will receive the message, compute the HMAC, and verify its integrity. If the message is untampered, the server will print the valid message. Otherwise, it will indicate that the message has been tampered with.
 

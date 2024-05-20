@@ -2,3 +2,7 @@
 2024-05-17 10:30:47,487 - INFO - Connection from ('127.0.0.1', 50254)
 2024-05-17 10:30:54,218 - INFO - Message received with HMAC: [Test per detyren | bc9480ccaaed136c4578fa8395ecd0dc520429665e25a8fd9bece0751984643c]
 2024-05-17 10:30:54,219 - INFO - Message verified successfully. Integrity and authenticity confirmed.
+2024-05-20 14:20:44,859 - INFO - Server started and awaiting messages...
+2024-05-20 14:21:13,889 - INFO - Connection from ('127.0.0.1', 50301)
+2024-05-20 14:21:28,916 - INFO - Message received with HMAC: [Detyra e trete ne Siguri | ea8dab2008a15cf3dc3afcbcf5bdb7d2ec5f79a779b179b3f87e9a164606268e]
+2024-05-20 14:21:28,917 - INFO - Message verified successfully. Integrity and authenticity confirmed.
